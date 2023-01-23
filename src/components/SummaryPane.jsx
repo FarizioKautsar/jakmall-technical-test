@@ -109,7 +109,7 @@ export default function SummaryPane({
               disabled={disableNextButton}
             >
               {
-                step === STEPS.PAYMENT ? "Continue to Payment" : `Pay with ${PAYMENTS_TEXTS[paymentMethod]}`
+                step === STEPS.DELIVERY ? "Continue to Payment" : `Pay with ${PAYMENTS_TEXTS[paymentMethod]}`
               }
             </JMButton>
           )
