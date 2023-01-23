@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import jmColors from "./jmColors";
 
 export const JMContainer = styled.div`
   margin: auto;
@@ -35,4 +36,28 @@ export const JMCard = styled.div`
 
 export const JMHeader = styled.h1`
   font-weight: 500;
+`
+
+export const JMButton = styled.button`
+  width: 100%;
+  border: none;
+  color: white;
+  background-color: ${jmColors.orange};
+  padding: 20px;
+  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 3px 5px 10px rgba(255, 138, 0, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 150ms;
+
+  &:hover {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 0px 5px rgba(255, 138, 0, 0.2);
+  }
+
+  &:focus {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
+  }
 `
