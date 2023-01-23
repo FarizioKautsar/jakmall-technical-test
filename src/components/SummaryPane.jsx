@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { JMButton } from '.';
-import { DROPSHIPPING_FEE, EXPEDITIONS, EXPEDITIONS_FEES, PAYMENTS, PAYMENTS_BALANCE, STEPS } from '../global/constants'
+import { DROPSHIPPING_FEE, EXPEDITIONS_FEES, EXPEDITION_ESTIMATES, STEPS } from '../global/constants'
 import { EXPEDITIONS_TEXTS, PAYMENTS_TEXTS } from '../global/enums';
 import jmColors from './jmColors';
 
@@ -52,7 +52,7 @@ export default function SummaryPane({
           <div style={{ marginBottom: 30 }}>
             <b>Delivery Estimation</b>
             <SummaryDeliveryPaymentText>
-              today by {EXPEDITIONS_TEXTS[shipmentExpedition]}
+              {EXPEDITION_ESTIMATES[shipmentExpedition]} by {EXPEDITIONS_TEXTS[shipmentExpedition]}
             </SummaryDeliveryPaymentText>
           </div>
         )
