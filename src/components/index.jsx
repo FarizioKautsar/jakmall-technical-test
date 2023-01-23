@@ -38,6 +38,12 @@ export const JMHeader = styled.h1`
   font-weight: 500;
 `
 
+export const JMVerticalDivider = styled.div`
+  border-left: 1px solid ${jmColors.orange};
+  margin-right: 16px;
+  margin-left: 16px;
+`;
+
 export const JMButton = styled.button`
   width: 100%;
   border: none;
@@ -59,5 +65,10 @@ export const JMButton = styled.button`
   &:focus {
     border: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 `
