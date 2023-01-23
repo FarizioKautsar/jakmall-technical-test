@@ -10,8 +10,21 @@ export const EXPEDITIONS = {
   PERSONAL: 'PERSONAL',
 }
 
+export const EXPEDITIONS_FEES = {
+  GO_SEND: 15000,
+  JNE: 9000,
+  PERSONAL: 29000,
+}
+
+
 export const PAYMENTS = {
   E_WALLET: 'E_WALLET',
   BANK_TRANSFER: 'BANK_TRANSFER',
   VIRTUAL_ACCOUNT: 'VIRTUAL_ACCOUNT',
 }
+
+export const PAYMENTS_BALANCE = {
+  E_WALLET: 1500000,
+}
+
+export const DROPSHIPPING_FEE = 5900;
