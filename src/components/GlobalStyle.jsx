@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', sans-serif;
     background-color: #FFFAE6;
+    font-size: 14px;
   }
 
   h1 {
