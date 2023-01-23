@@ -8,11 +8,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
+    margin-top: 0;
     font-family: 'Montserrat', sans-serif;
     color: ${jmColors.orange};
     position: relative;
     display:inline-block; 
     z-index: 0;
+    font-size: 36px;
     &:after {
       position: absolute;
       content: '';
@@ -29,7 +31,13 @@ const GlobalStyle = createGlobalStyle`
 
   h2, h3, h4, h5, h6 {
     font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
     color: ${jmColors.orange};
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 24px;
   }
 `
 
