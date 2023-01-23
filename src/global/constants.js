@@ -16,6 +16,11 @@ export const EXPEDITIONS_FEES = {
   PERSONAL: 29000,
 }
 
+export const EXPEDITION_ESTIMATES = {
+  GO_SEND: 'today',
+  JNE: '2 days',
+  PERSONAL: '1 day',
+}
 
 export const PAYMENTS = {
   E_WALLET: 'E_WALLET',
