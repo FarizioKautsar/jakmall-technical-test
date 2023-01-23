@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { JMButton } from '.';
-import { EXPEDITIONS, EXPEDITIONS_FEES, PAYMENTS, PAYMENTS_BALANCE, STEPS } from '../global/constants'
+import { DROPSHIPPING_FEE, EXPEDITIONS, EXPEDITIONS_FEES, PAYMENTS, PAYMENTS_BALANCE, STEPS } from '../global/constants'
 import { EXPEDITIONS_TEXTS } from '../global/enums';
 
 const SummaryCostContainer = styled.div`
@@ -17,24 +17,16 @@ export default function SummaryPane({
     { id: "123", price: 5000, amount: 10 }
   ],
   isDropship = false,
-  dropshipFee = 5900,
   step = STEPS.DELIVERY,
-  setStep = () => {}
+  disableNextButton = false,
+  onNextButtonClick = () => {}
 }) {
   const shipmentFee = EXPEDITIONS_FEES[shipmentExpedition];
   const totalCostOfGoods = items
     .reduce(
       (a, b) => (a.price || 0 * a.amount || 0) + (b.price * b.amount), 0
     );
-  const totalCost = totalCostOfGoods + dropshipFee + shipmentFee;
-
-  function handleButtonClick() {
-    setStep(
-      step === STEPS.DELIVERY 
-        ? STEPS.PAYMENT : step === STEPS.PAYMENT 
-        ? STEPS.FINISH : STEPS.FINISH
-    )
-  }
+  const totalCost = totalCostOfGoods + isDropship ? DROPSHIPPING_FEE : 0 + shipmentFee;
 
   return (
     <div style={{
@@ -65,7 +57,7 @@ export default function SummaryPane({
         <SummaryCostContainer>
           Dropshipping Fee
           <b>
-            {dropshipFee}
+            {DROPSHIPPING_FEE}
           </b>
         </SummaryCostContainer>
         <SummaryCostContainer>
@@ -82,7 +74,10 @@ export default function SummaryPane({
             <h2>{totalCost}</h2>
           </SummaryCostContainer>
         </div>
-        <JMButton onClick={handleButtonClick}>
+        <JMButton 
+          onClick={onNextButtonClick}
+          disabled={disableNextButton}
+        >
           Continue to Payment
         </JMButton>
       </div>
