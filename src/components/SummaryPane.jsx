@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import { JMButton } from '.';
 import { DROPSHIPPING_FEE, EXPEDITIONS, EXPEDITIONS_FEES, PAYMENTS, PAYMENTS_BALANCE, STEPS } from '../global/constants'
-import { EXPEDITIONS_TEXTS } from '../global/enums';
+import { EXPEDITIONS_TEXTS, PAYMENTS_TEXTS } from '../global/enums';
+import jmColors from './jmColors';
 
 const SummaryCostContainer = styled.div`
   display: flex;
@@ -10,9 +11,15 @@ const SummaryCostContainer = styled.div`
   margin-bottom: 8px;
 `
 
+const SummaryDeliveryPaymentText = styled.p`
+  font-size: 16px;
+  color: ${jmColors.green};
+  margin: 0;
+`
+
 export default function SummaryPane({
-  shipmentExpedition = EXPEDITIONS.GO_SEND,
-  paymentMethod = PAYMENTS.E_WALLET,
+  shipmentExpedition,
+  paymentMethod,
   items = [
     { id: "123", price: 5000, amount: 10 }
   ],
@@ -21,17 +28,17 @@ export default function SummaryPane({
   disableNextButton = false,
   onNextButtonClick = () => {}
 }) {
-  const shipmentFee = EXPEDITIONS_FEES[shipmentExpedition];
+  const shipmentFee = EXPEDITIONS_FEES[shipmentExpedition] || 0;
   const totalCostOfGoods = items
     .reduce(
       (a, b) => (a.price || 0 * a.amount || 0) + (b.price * b.amount), 0
     );
-  const totalCost = totalCostOfGoods + isDropship ? DROPSHIPPING_FEE : 0 + shipmentFee;
+  const totalCost = totalCostOfGoods + (isDropship ? DROPSHIPPING_FEE : 0) + shipmentFee;
 
   return (
     <div style={{
       position: 'relative',
-      minHeight: '400px',
+      minHeight: '520px',
       width: '100%'
     }}>
       <h2>
@@ -40,9 +47,26 @@ export default function SummaryPane({
       <p>
         10 items purchased
       </p>
-      <div>
-        <b>Delivery Estimation</b>
-      </div>
+      {
+        shipmentExpedition && (
+          <div style={{ marginBottom: 30 }}>
+            <b>Delivery Estimation</b>
+            <SummaryDeliveryPaymentText>
+              today by {EXPEDITIONS_TEXTS[shipmentExpedition]}
+            </SummaryDeliveryPaymentText>
+          </div>
+        )
+      }
+      {
+        paymentMethod && (
+          <div>
+            <b>Payment Method</b>
+            <SummaryDeliveryPaymentText>
+              {PAYMENTS_TEXTS[paymentMethod]}
+            </SummaryDeliveryPaymentText>
+          </div>
+        )
+      }
       <div style={{
         position: 'absolute',
         bottom: 0,
@@ -54,12 +78,16 @@ export default function SummaryPane({
             {totalCostOfGoods}
           </b>
         </SummaryCostContainer>
-        <SummaryCostContainer>
-          Dropshipping Fee
-          <b>
-            {DROPSHIPPING_FEE}
-          </b>
-        </SummaryCostContainer>
+        {
+          isDropship && (
+            <SummaryCostContainer>
+              Dropshipping Fee
+              <b>
+                {DROPSHIPPING_FEE}
+              </b>
+            </SummaryCostContainer>
+          )
+        }
         <SummaryCostContainer>
           <div>
             <b>{EXPEDITIONS_TEXTS[shipmentExpedition]}</b> shipment
@@ -74,12 +102,18 @@ export default function SummaryPane({
             <h2>{totalCost}</h2>
           </SummaryCostContainer>
         </div>
-        <JMButton 
-          onClick={onNextButtonClick}
-          disabled={disableNextButton}
-        >
-          Continue to Payment
-        </JMButton>
+        {
+          step !== STEPS.FINISH && (
+            <JMButton 
+              onClick={onNextButtonClick}
+              disabled={disableNextButton}
+            >
+              {
+                step === STEPS.PAYMENT ? "Continue to Payment" : `Pay with ${PAYMENTS_TEXTS[paymentMethod]}`
+              }
+            </JMButton>
+          )
+        }
       </div>
     </div>
   )
