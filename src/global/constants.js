@@ -1,0 +1,5 @@
+export const STEPS = {
+  DELIVERY: "DELIVERY",
+  PAYMENT: "PAYMENT",
+  FINISH: "FINISH",
+}
