@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     &:after {
       position: absolute;
       content: '';
-      background-color: ${jmColors.lightWhite};
+      background-color: ${jmColors.lightWhite1};
       height: 8px;
       width: 100%;
       left: 0;
