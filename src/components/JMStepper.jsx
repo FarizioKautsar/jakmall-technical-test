@@ -1,4 +1,5 @@
 import React from 'react'
+import { MdChevronRight } from 'react-icons/md';
 import styled from 'styled-components'
 import { STEPS } from '../global/constants'
 import { STEPS_TEXTS } from '../global/enums';
@@ -10,6 +11,7 @@ const JMStepperBackground = styled.div`
   border-radius: 500px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const JMStepperStepContainer = styled.div`
@@ -44,18 +46,25 @@ export default function JMStepper({
     <JMStepperBackground>
       {
         steps.map((step, stepIdx) => (
-          <JMStepperStepContainer>
-            <JMStepperNumberContainer
-              acitve={step === stepProp}
-            >
-              <JMStepperNumber>
-                {stepIdx + 1}
-              </JMStepperNumber>
-            </JMStepperNumberContainer>
-            <JMStepperText>
-              {STEPS_TEXTS[step]}
-            </JMStepperText>
-          </JMStepperStepContainer>
+          <>
+            <JMStepperStepContainer>
+              <JMStepperNumberContainer
+                acitve={step === stepProp}
+              >
+                <JMStepperNumber>
+                  {stepIdx + 1}
+                </JMStepperNumber>
+              </JMStepperNumberContainer>
+              <JMStepperText>
+                {STEPS_TEXTS[step]}
+              </JMStepperText>
+            </JMStepperStepContainer>
+            {
+              stepIdx < Object.values(STEPS).length - 1 && (
+                <MdChevronRight size={30} color={jmColors.orange}/>
+              )
+            }
+          </>
         ))
       }
     </JMStepperBackground>
